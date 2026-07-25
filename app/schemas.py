@@ -1,1 +1,1 @@
-# Schemas
+from marshmallow import Schema, fields
