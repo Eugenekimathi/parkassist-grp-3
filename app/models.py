@@ -200,7 +200,6 @@ class Vehicle(db.Model):
     registered_at_checkpoint_id = db.Column(db.Integer, db.ForeignKey("checkpoints.id"), nullable=True)
     registered_by_user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-
     __table_args__ = (
         db.CheckConstraint(
             "(owner_resident_id IS NOT NULL AND owner_visitor_id IS NULL) OR "
@@ -208,7 +207,6 @@ class Vehicle(db.Model):
             name="check_vehicle_single_owner_type",
         ),
     )
-
     owner_resident = db.relationship("Resident", backref="vehicles")
     owner_visitor = db.relationship("Visitor", backref="vehicles")
     registered_at_checkpoint = db.relationship("Checkpoint", backref="vehicles_registered")
